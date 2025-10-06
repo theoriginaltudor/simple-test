@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <Text preset={1} as={"h1"} className="text-grey-400">
+      <Text preset={1} as={"h2"} className="text-grey-400">
         Vite + React
       </Text>
 
