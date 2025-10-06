@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+tip-calculator-app-main
+tip-calculator-app-main/*
