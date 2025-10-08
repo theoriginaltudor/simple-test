@@ -1,4 +1,8 @@
 import { useState } from "react";
+import Person from "./assets/images/icon-person.svg?react";
+import { Field } from "./components/form-field";
+import { Input } from "./components/form-field/form-input";
+import { Label } from "./components/form-field/form-label";
 import { Text } from "./components/text";
 import { TipButton } from "./components/tip-button";
 
@@ -11,7 +15,7 @@ function App() {
         Vite + React
       </Text>
 
-      <div className="rounded-2xl bg-orange-400 m-1 p-3">
+      <div className="rounded-2xl m-1 p-3">
         <TipButton
           preset="light"
           onClick={() => setCount((count) => count + 1)}
@@ -25,6 +29,11 @@ function App() {
       <p className="text-green-200">
         <Text>Click on the Vite and React logos to learn more</Text>
       </p>
+
+      <Field>
+        <Label className="text-grey-500">Number of People</Label>
+        <Input icon={Person}></Input>
+      </Field>
     </>
   );
 }
