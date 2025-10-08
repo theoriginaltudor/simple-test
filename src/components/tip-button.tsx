@@ -19,6 +19,7 @@ const TipButton: FC<Props> = ({
   preset = "base",
   className,
   children,
+  disabled,
   ...props
 }) => {
   return (
@@ -26,8 +27,10 @@ const TipButton: FC<Props> = ({
       className={cn(
         "flex justify-center rounded-[5px] items-center w-[122px] h-12",
         presetList[preset],
-        className
+        className,
+        { "bg-green-750 text-green-800": disabled }
       )}
+      disabled={disabled}
       {...props}
     >
       <Text preset={3}>{children}</Text>

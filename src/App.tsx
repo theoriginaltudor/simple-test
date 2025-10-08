@@ -6,6 +6,7 @@ import { Input } from "./components/form-field/form-input";
 import { Label } from "./components/form-field/form-label";
 import { Text } from "./components/text";
 import { TipButton } from "./components/tip-button";
+import { Card } from "./components/tip-card";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -40,6 +41,8 @@ function App() {
         <Label className="text-grey-500">Money</Label>
         <Input icon={Dollar} strategy={parseFloat}></Input>
       </Field>
+
+      <Card />
     </>
   );
 }
