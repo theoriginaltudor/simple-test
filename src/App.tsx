@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Dollar from "./assets/images/icon-dollar.svg?react";
 import Person from "./assets/images/icon-person.svg?react";
 import { Field } from "./components/form-field";
 import { Input } from "./components/form-field/form-input";
@@ -37,7 +38,7 @@ function App() {
 
       <Field>
         <Label className="text-grey-500">Money</Label>
-        <Input icon={Person} strategy={parseFloat}></Input>
+        <Input icon={Dollar} strategy={parseFloat}></Input>
       </Field>
     </>
   );
