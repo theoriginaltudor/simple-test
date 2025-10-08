@@ -26,10 +26,10 @@ export const Input: FC<Props> = ({ name, icon: Icon, strategy = parseInt }) => {
   return (
     <div
       className={cn(
-        "bg-grey-50 flex items-center py-2 px-4 rounded-[5px] border-2 border-white",
+        "bg-grey-50 flex items-center py-2 px-4 rounded-[5px] border-2 border-white focus-within:border-green-400 hover:border-green-400 transition-colors duration-150",
         {
-          "border-orange-400": error,
-          "border-green-400": value && !error,
+          "border-orange-400 hover:border-orange-400 focus-within:border-orange-400":
+            error,
         }
       )}
     >
