@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Dollar from "./assets/images/icon-dollar.svg?react";
 import Person from "./assets/images/icon-person.svg?react";
 import Logo from "./assets/images/logo.svg?react";
 import { Field } from "./components/form-field";
 import { Input } from "./components/form-field/form-input";
 import { Label } from "./components/form-field/form-label";
-import { Text } from "./components/text";
-import { TipButton } from "./components/tip-button";
+import { TipList } from "./components/select-tip-list";
 import { Card } from "./components/tip-card";
 
 function App() {
   const [bill, setBill] = useState<number | null>(null);
   const [people, setPeople] = useState<number | null>(null);
   const [tip, setTip] = useState<number | null>(null);
+  const values = useRef([5, 10, 15, 25, 50]);
   let tipForPerson;
   let totalForPerson;
   if (bill && people && tip && bill > 0 && people > 0) {
@@ -28,59 +28,7 @@ function App() {
             <Label>Bill</Label>
             <Input icon={Dollar} strategy={parseFloat} />
           </Field>
-          <div className="flex flex-col gap-2">
-            <Text as="span" preset={5}>
-              Select Tip %
-            </Text>
-            <div className="grid grid-cols-3 gap-4">
-              <TipButton
-                onClick={() => {
-                  if (tip == 5) setTip(null);
-                  else setTip(5);
-                }}
-                preset={tip == 5 ? "base" : "dark"}
-              >
-                5%
-              </TipButton>
-              <TipButton
-                onClick={() => {
-                  if (tip == 10) setTip(null);
-                  else setTip(10);
-                }}
-                preset={tip == 10 ? "base" : "dark"}
-              >
-                10%
-              </TipButton>
-              <TipButton
-                onClick={() => {
-                  if (tip == 15) setTip(null);
-                  else setTip(15);
-                }}
-                preset={tip == 15 ? "base" : "dark"}
-              >
-                15%
-              </TipButton>
-              <TipButton
-                onClick={() => {
-                  if (tip == 25) setTip(null);
-                  else setTip(25);
-                }}
-                preset={tip == 25 ? "base" : "dark"}
-              >
-                25%
-              </TipButton>
-              <TipButton
-                onClick={() => {
-                  if (tip == 50) setTip(null);
-                  else setTip(50);
-                }}
-                preset={tip == 50 ? "base" : "dark"}
-              >
-                50%
-              </TipButton>
-              <TipButton>Custom</TipButton>
-            </div>
-          </div>
+          <TipList tip={tip} setTip={setTip} values={values.current} />
           <Field value={people} setValue={setPeople}>
             <Label>Number of People</Label>
             <Input icon={Person} />
