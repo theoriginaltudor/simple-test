@@ -11,9 +11,10 @@ import { FieldContext } from "./context";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
+  strategy?: typeof parseInt | typeof parseFloat;
 }
 
-export const Input: FC<Props> = ({ name, icon: Icon }) => {
+export const Input: FC<Props> = ({ name, icon: Icon, strategy = parseInt }) => {
   const context = useContext(FieldContext);
   if (!context)
     return (
@@ -25,7 +26,7 @@ export const Input: FC<Props> = ({ name, icon: Icon }) => {
   return (
     <div
       className={cn(
-        "bg-grey-50 flex items-center py-2 px-4 rounded-[5px] border border-white",
+        "bg-grey-50 flex items-center py-2 px-4 rounded-[5px] border-2 border-white",
         {
           "border-orange-400": error,
           "border-green-400": value && !error,
@@ -36,14 +37,13 @@ export const Input: FC<Props> = ({ name, icon: Icon }) => {
       <Text preset={3} className="flex-1">
         <input
           id={id}
-          type="number"
+          type="text"
           name={name}
-          className="h-9 w-full text-green-900 text-end"
+          className="h-9 w-full text-green-900 text-end focus-visible:outline-0"
           value={value ?? ""}
           placeholder="0"
-          onChange={(e) => {
-            const numberValue = Number.parseInt(e.currentTarget.value);
-            console.log(numberValue);
+          onInput={(e) => {
+            const numberValue = strategy(e.currentTarget.value);
             if (!isNaN(numberValue)) setValue(numberValue);
           }}
         />

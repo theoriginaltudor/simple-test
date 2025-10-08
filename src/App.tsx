@@ -34,6 +34,11 @@ function App() {
         <Label className="text-grey-500">Number of People</Label>
         <Input icon={Person}></Input>
       </Field>
+
+      <Field>
+        <Label className="text-grey-500">Money</Label>
+        <Input icon={Person} strategy={parseFloat}></Input>
+      </Field>
     </>
   );
 }
