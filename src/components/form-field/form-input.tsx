@@ -1,5 +1,6 @@
 import {
   useContext,
+  useState,
   type ComponentType,
   type FC,
   type InputHTMLAttributes,
@@ -16,13 +17,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: FC<Props> = ({ name, icon: Icon, strategy = parseInt }) => {
   const context = useContext(FieldContext);
+  const [inputValue, setInputValue] = useState(context?.value?.toString());
   if (!context)
     return (
       <Text preset={6} className="text-orange-400">
         Context missing
       </Text>
     );
-  const { id, error, value, setValue } = context;
+  const { id, error, setValue } = context;
   return (
     <div
       className={cn(
@@ -40,9 +42,19 @@ export const Input: FC<Props> = ({ name, icon: Icon, strategy = parseInt }) => {
           type="text"
           name={name}
           className="h-9 w-full text-green-900 text-end focus-visible:outline-0"
-          value={value ?? ""}
+          value={inputValue ?? ""}
           placeholder="0"
           onInput={(e) => {
+            const cleanVal = e.currentTarget.value
+              .split("")
+              .filter((val) => {
+                if ([".", "-"].includes(val)) return true;
+                return !isNaN(parseInt(val));
+              })
+              .join("")
+              .replaceAll("..", ".")
+              .replaceAll("--", "-");
+            setInputValue(cleanVal);
             const numberValue = strategy(e.currentTarget.value);
             if (!isNaN(numberValue)) setValue(numberValue);
           }}
