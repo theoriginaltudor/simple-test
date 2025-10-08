@@ -2,7 +2,15 @@ import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { createElement } from "react";
 import { cn } from "../../utils";
 
-type AllowedElements = "span" | "label" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+type AllowedElements =
+  | "span"
+  | "label"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6";
 
 type Props<T extends AllowedElements = "span"> = {
   preset?: 1 | 2 | 3 | 4 | 5 | 6;
@@ -28,7 +36,11 @@ export const Text = <T extends AllowedElements = "span">({
   ];
 
   const props = {
-    className: cn("tracking-normal", presetList[preset - 1], className),
+    className: cn(
+      "font-space-mono tracking-normal",
+      presetList[preset - 1],
+      className
+    ),
     ...(rest as unknown as Record<string, unknown>),
   };
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Text } from "./components/text";
+import { TipButton } from "./components/tip-button";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,14 +12,17 @@ function App() {
       </Text>
 
       <div className="rounded-2xl bg-orange-400 m-1 p-3">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <TipButton
+          preset="light"
+          onClick={() => setCount((count) => count + 1)}
+        >
+          {count}%
+        </TipButton>
         <p className="text-green-400 text-sm leading-4 tracking-normal">
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="text-green-200 font-space-mono">
+      <p className="text-green-200">
         <Text>Click on the Vite and React logos to learn more</Text>
       </p>
     </>
