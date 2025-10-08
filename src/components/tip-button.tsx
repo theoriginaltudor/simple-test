@@ -33,6 +33,7 @@ const TipButton: FC<Props> = ({
           "hover:bg-green-200 hover:text-green-900": !disabled,
         }
       )}
+      data-testid={children}
       disabled={disabled}
       {...props}
     >

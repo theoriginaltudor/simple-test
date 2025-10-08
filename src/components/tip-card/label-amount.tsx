@@ -15,7 +15,7 @@ export const Amount: FC<Props> = ({ children, label }) => {
         </Text>
         <Text className="text-grey-400">/ person</Text>
       </div>
-      <Text className="text-green-400" preset={1}>
+      <Text className="text-green-400" preset={1} data-testid={label}>
         {children}
       </Text>
     </div>
