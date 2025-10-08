@@ -31,12 +31,12 @@ function App() {
         <div className="flex gap-10 flex-col">
           <Field value={bill} setValue={setBill}>
             <Label>Bill</Label>
-            <Input icon={Dollar} strategy={parseFloat} />
+            <Input icon={Dollar} strategy={parseFloat} name="bill" />
           </Field>
           <TipList tip={tip} setTip={setTip} values={values.current} />
           <Field value={people} setValue={setPeople}>
             <Label>Number of People</Label>
-            <Input icon={Person} />
+            <Input icon={Person} name="people" />
           </Field>
         </div>
         <Card
