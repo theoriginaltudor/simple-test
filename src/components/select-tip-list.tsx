@@ -7,6 +7,7 @@ export const TipList: FC<{
   setTip: React.Dispatch<React.SetStateAction<number | null>>;
   values: number[];
 }> = memo(({ tip, setTip, values }) => {
+  console.log("render tip list");
   return (
     <div className="flex flex-col gap-2">
       <Text as="span" preset={5}>

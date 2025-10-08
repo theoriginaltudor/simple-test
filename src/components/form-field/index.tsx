@@ -14,6 +14,7 @@ export const Field: FC<Props> = memo(
     if (value && value < 0) error = "Can't be negative";
     if (value == 0) error = "Can't be zero";
     const id = useId();
+    console.log("render field", id);
     return (
       <FieldContext
         value={{

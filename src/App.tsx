@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Dollar from "./assets/images/icon-dollar.svg?react";
 import Person from "./assets/images/icon-person.svg?react";
 import Logo from "./assets/images/logo.svg?react";
@@ -13,6 +13,11 @@ function App() {
   const [people, setPeople] = useState<number | null>(null);
   const [tip, setTip] = useState<number | null>(null);
   const values = useRef([5, 10, 15, 25, 50]);
+  const reset = useCallback(() => {
+    setBill(null);
+    setPeople(null);
+    setTip(null);
+  }, [setBill, setPeople, setTip]);
   let tipForPerson;
   let totalForPerson;
   if (bill && people && tip && bill > 0 && people > 0) {
@@ -37,11 +42,7 @@ function App() {
         <Card
           tip={tipForPerson && tipForPerson >= 0 ? tipForPerson : 0}
           total={totalForPerson && totalForPerson >= 0 ? totalForPerson : 0}
-          onReset={() => {
-            setBill(null);
-            setPeople(null);
-            setTip(null);
-          }}
+          onReset={reset}
         />
       </div>
     </div>
