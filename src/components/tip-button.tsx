@@ -25,10 +25,13 @@ const TipButton: FC<Props> = ({
   return (
     <button
       className={cn(
-        "flex justify-center rounded-[5px] items-center w-[122px] h-12 hover:bg-green-200 hover:text-green-900 transition-colors duration-150",
+        "flex justify-center rounded-[5px] items-center w-[122px] h-12 transition-colors duration-150",
         presetList[preset],
         className,
-        { "bg-green-750 text-green-800": disabled }
+        {
+          "bg-green-750 text-green-800": disabled,
+          "hover:bg-green-200 hover:text-green-900": !disabled,
+        }
       )}
       disabled={disabled}
       {...props}
