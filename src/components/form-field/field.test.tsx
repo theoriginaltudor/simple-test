@@ -102,6 +102,19 @@ describe("Input", () => {
 
       expect(fakeSetter).toHaveBeenCalledWith(-9.5);
     });
+
+    it("has value -910.08", async () => {
+      const user = userEvent.setup();
+      render(
+        <Field value={null} setValue={fakeSetter}>
+          <Label>People</Label>
+          <Input icon={Person} />
+        </Field>
+      );
+      await user.type(screen.getByLabelText("People"), "---910..08");
+
+      expect(fakeSetter).toHaveBeenCalledWith(-910.08);
+    });
   });
 
   describe("Ilegal values", () => {
@@ -142,6 +155,19 @@ describe("Input", () => {
       await user.type(screen.getByLabelText("People"), "asbd");
 
       expect(fakeSetter).toBeCalledTimes(0);
+    });
+
+    it("has value -910.08", async () => {
+      const user = userEvent.setup();
+      render(
+        <Field value={null} setValue={fakeSetter}>
+          <Label>People</Label>
+          <Input icon={Person} />
+        </Field>
+      );
+      await user.type(screen.getByLabelText("People"), "-91-0.0.8");
+
+      expect(fakeSetter).toHaveBeenCalledWith(-910.08);
     });
   });
 });
