@@ -1,7 +1,12 @@
 import { useId, useState, type FC } from "react";
+import { cn } from "../../../utils";
 import { FieldContext } from "./context";
 
-export const Field: FC<React.PropsWithChildren> = ({ children }) => {
+interface Props extends React.PropsWithChildren {
+  className?: string;
+}
+
+export const Field: FC<Props> = ({ children, className }) => {
   const [value, setValue] = useState<number | null>(null);
   let error: string | null = null;
   if (value) {
@@ -18,7 +23,7 @@ export const Field: FC<React.PropsWithChildren> = ({ children }) => {
         id,
       }}
     >
-      {children}
+      <div className={cn("flex flex-col gap-2", className)}>{children}</div>
     </FieldContext>
   );
 };
