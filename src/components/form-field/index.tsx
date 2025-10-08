@@ -9,10 +9,8 @@ interface Props extends React.PropsWithChildren {
 export const Field: FC<Props> = ({ children, className }) => {
   const [value, setValue] = useState<number | null>(null);
   let error: string | null = null;
-  if (value) {
-    if (value < 0) error = "Can't be negative";
-    if (value == 0) error = "Can't be zero";
-  }
+  if (value && value < 0) error = "Can't be negative";
+  if (value == 0) error = "Can't be zero";
   const id = useId();
   return (
     <FieldContext
