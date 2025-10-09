@@ -169,5 +169,18 @@ describe("Input", () => {
 
       expect(fakeSetter).toHaveBeenCalledWith(-910.08);
     });
+
+    it("doesn't allow value -.5", async () => {
+      const user = userEvent.setup();
+      render(
+        <Field value={null} setValue={fakeSetter}>
+          <Label>People</Label>
+          <Input icon={Person} />
+        </Field>
+      );
+      await user.type(screen.getByLabelText("People"), "-.5");
+
+      expect(fakeSetter).toHaveBeenCalledWith(-5);
+    });
   });
 });
