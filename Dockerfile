@@ -1,10 +1,11 @@
 # Build stage
 FROM node:20-alpine AS builder
 WORKDIR /app
-COPY package*.json pnpm-lock.yaml ./
-RUN corepack enable &amp;&amp; pnpm install --frozen-lockfile
+COPY package*.json ./
+# Install dependencies: use npm ci when a lockfile is present, otherwise npm install
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 COPY . .
-RUN pnpm build
+RUN npm run build
 
 # Production stage
 FROM nginx:alpine
