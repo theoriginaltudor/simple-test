@@ -14,13 +14,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
 
-      - name: Install dependencies
+      - name: Install dependencies (for tests)
         run: npm install
 
       - name: Run tests
         run: npm test
+
+      - name: Generate package-lock for deployment
+        run: npm install --package-lock-only
 
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
