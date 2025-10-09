@@ -56,7 +56,7 @@ describe("Input", () => {
       render(
         <Field value={null} setValue={fakeSetter}>
           <Label>People</Label>
-          <Input icon={Person} />
+          <Input icon={Person} strategy={parseFloat} />
         </Field>
       );
       await user.type(screen.getByLabelText("People"), "-91-0.0.8");
