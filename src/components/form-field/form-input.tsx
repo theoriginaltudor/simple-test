@@ -47,13 +47,24 @@ export const Input: FC<Props> = ({ name, icon: Icon, strategy = parseInt }) => {
           onInput={(e) => {
             const cleanVal = e.currentTarget.value
               .split("")
-              .filter((val) => {
-                if ([".", "-"].includes(val)) return true;
-                return !isNaN(parseInt(val));
-              })
-              .join("")
-              .replaceAll("..", ".")
-              .replaceAll("--", "-");
+              .reduce((prev, current, index) => {
+                if (index === 0) {
+                  if (current.match(/[-]|\d/g)) return prev + current;
+                }
+                if (index === 1) {
+                  if (prev.includes("-") && current.match(/\d/g))
+                    return prev + current;
+                  if (prev.match(/\d/g) && current.match(/[.]|\d/g))
+                    return prev + current;
+                }
+                if (index > 1) {
+                  if (prev.includes(".") && current.match(/\d/g))
+                    return prev + current;
+                  if (!prev.includes(".") && current.match(/[.]|\d/g))
+                    return prev + current;
+                }
+                return prev;
+              }, "");
             setInputValue(cleanVal);
             const numberValue = strategy(e.currentTarget.value);
             if (!isNaN(numberValue)) setValue(numberValue);
