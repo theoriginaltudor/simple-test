@@ -3,7 +3,7 @@ version: "3.8"
 services:
   web:
     build: .
-    restart: unless-stopped
+    restart: always
     networks:
       default: {}
       shared_net:
