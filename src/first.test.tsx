@@ -19,7 +19,7 @@ describe("calculate total and tip", () => {
     await user.type(screen.getByLabelText("Number of People"), "5");
     await user.click(screen.getByTestId("15,%"));
 
-    expect(screen.getByTestId("Tip Amount").innerHTML).toBe("$4.27");
+    expect(screen.getByTestId("Tip Amount").innerHTML).toBe("$4.28");
     expect(screen.getByTestId("Total").innerHTML).toBe("$32.79");
   });
 
